@@ -13,6 +13,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -40,6 +42,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    
+
     /**
      * The attributes that should be cast.
      *
@@ -50,6 +54,6 @@ class User extends Authenticatable
     ];
 
     public function order(){
-        return $this->hasMany(Order::class);
+        return $this->hasMany('App\Models\Order', 'id');
     }
 }

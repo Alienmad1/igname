@@ -22,13 +22,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+
 Route::post('/clients', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
-Route::get('/aaa', [UserController::class, 'aff']);
+Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum'); //erreur 500
+Route::get('/returnUser ', [UserController::class, 'UserWhOrder']);
 
 
 
-Route::post('/ooo', [OrderController::class, 'create']);
-Route::get('/list ', [OrderController::class, 'listA']);
+Route::post('/add', [OrderController::class, 'create']);
+Route::get('/list', [OrderController::class, 'listAll']);
+Route::put('/modifyy/{id}', [OrderController::class, 'updateCom'])->WhereNumber('id'); //erreur 404
+Route::delete('/destroyer/{id}', [OrderController::class, 'destroyCom']); //erreur 404
+
 

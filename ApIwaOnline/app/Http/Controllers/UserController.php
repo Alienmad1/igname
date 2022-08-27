@@ -8,22 +8,18 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
    
-    public function index()
-    {
+    //return tous les utilisateurs qui ont commander
+    public function UserWhOrder(){
+        $user = User::query()
+             ->join('orders', 'users.id', '=',  'orders.id_users')
+             ->get();
+        
 
-        $user = User::select(DB::raw('users.*'))
-            ->join('orders', 'users.id', '=', 'orders.id_users')
-            ->get();
+         return response()->json([
+                 'order' => $user,
+                  200
+             ]);
+     }
 
-        return response()->json([
-            'user' => $user,
-             200
-        ]);
 
-    }
-
-    public function aff(){
-        $user= User::with('order')->get();
- dd($user->order);
-    }
 }

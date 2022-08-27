@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+
+    //create une commande
     public function create(Request $request){
         
       
@@ -35,29 +38,48 @@ class OrderController extends Controller
 
         
     }
+
+    //update one order
+    public function updateCom(Request $request, $id){
+        
+        $order  = Order::find($id);
+        $order->details  = $request->details;
+        $order->lieudedepart  = $request->lieudedepart;
+        $order->lieudelivraison  = $request->lieudelivraison;
+        $order->contactdudestinataire  = $request->contactdudestinataire;
+        $order->montant  = $request->montant;
+        $order->id_livreurs  = $request->id_livreurs;
+
+        $order->update();
+
+        return reponse(
+            'succes'
+        );
+
+        
+    }
+
+    //delete la commande 
+    public function destroyCom($id){
+
+        $order = Order::find($id);
+        $order->delete();
+
+        return reponse('commande delete');
+    }
     
 
+
+    //retourner toutes les commandes avec le nom des utilisateurs 
     public function listAll(){
-        $order = Order::select(DB::raw('*', 'from', 'orders'))
-            ->join('users', 'orders.id_users', '=', 'users_id ')
+       $order = Order::query()
+            ->select('details', 'users.name','lieudedepart','lieudelivraison', 'contactdudestinataire', 'users.contact')
+            ->join('users', 'orders.id_users', '=',  'users.id')
             ->get();
 
         return response()->json([
-            'order' => $order,
-             200
-        ]);
-    }
-
-    public function listA(){
-       $order = Order::with('user')->get();
-       dd($order->user);
-
-       return response()->json([
-        'order' => $order,
-         200
-    ]);
-
-    
+                'order' => $order
+            ]);
     }
     
     

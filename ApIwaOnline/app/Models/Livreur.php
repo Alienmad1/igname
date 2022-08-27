@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Livreur extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id';
     
     protected $fillable = [
         'id',
