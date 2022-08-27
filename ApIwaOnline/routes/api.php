@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\LivreurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,12 @@ Route::post('/add', [OrderController::class, 'create']);
 Route::get('/list', [OrderController::class, 'listAll']);
 Route::put('/modifyy/{id}', [OrderController::class, 'updateCom'])->WhereNumber('id'); //erreur 404
 Route::delete('/destroyer/{id}', [OrderController::class, 'destroyCom']); //erreur 404
+
+
+Route::post('/addLivreur', [LivreurController::class, 'createLivreur']);
+Route::get('/listLivreur', [LivreurController::class, 'listAll']);
+
+
+
 
 
