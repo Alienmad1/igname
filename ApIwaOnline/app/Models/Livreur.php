@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Livreur extends Model
 {
@@ -11,8 +12,8 @@ class Livreur extends Model
     
     protected $fillable = [
         'id',
-        'nom_livreur',
-        'prenom_livreur',
+        'nom_livreurs',
+        'prenom_livreurs',
         'contact',
         'photo'
     ];

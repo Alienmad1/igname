@@ -13,10 +13,15 @@ class Order extends Model
 
     protected $fillable = [
         'id',
-        'nom_livreur',
-        'prenom_livreur',
-        'contact',
-        'photo'
+        'details',	
+        'lieudedepart',
+    	'lieudelivraison',	
+        'contactdudestinataire',
+        'montant',	
+        'id_users',	
+        'id_livreurs',
+        'created_at',
+        'updated_at'
     ];
 
     public function user(){

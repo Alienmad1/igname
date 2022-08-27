@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/clients', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/me', [AuthController::class, 'moi'])->middleware('auth:sanctum');
+Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+Route::get('/aaa', [UserController::class, 'aff']);
+
+
+
+Route::post('/ooo', [OrderController::class, 'create']);
+Route::get('/list ', [OrderController::class, 'listA']);
+
